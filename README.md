@@ -1,111 +1,42 @@
-# Gym & Fitness Center Management System (Django UI Phase)
+# gym-fitness-center
+This administrative platform streamlines gym operations by centralizing member registration, class scheduling, and instructor assignments into a single staff-facing interface. The system automates core facility tasks such as membership renewals, capacity-aware class enrollments, and equipment maintenance tracking. By integrating financial logging with daily operational reporting, it provides a comprehensive tool for managing all aspects of a fitness center’s day-to-day business.
 
-This project is a Django-based admin tool for managing day-to-day gym operations.
+## User Story
+* As an Admin, I want to enter a new member's details and assign them a membership tier, so that they are officially registered in the system and can begin using gym services.
+* As an Admin, I want to verify a member's ID and active status upon arrival, so that I can validate their access and maintain an accurate log of gym attendance.
+* As an Admin, I want to process a payment and update a member’s expiration date, so that their access remains uninterrupted and our financial records stay up to date.
+* As an Admin, I want to define a new fitness class with a specific schedule and room assignment, so that members have a variety of organized activities to choose from.
+* As an Admin, I want to assign a qualified instructor to a scheduled class, so that the class is properly staffed and the trainer's shift is accurately recorded.
+* As an Admin, I want to enroll a member into a specific class while respecting room capacity limits, so that classes remain safe, organized, and not overbooked.
+* As an Admin, I want to view and update the condition of equipment within a specific room, so that I can ensure all machinery is safe for member use and track service history.
+* As an Admin, I want to generate a unified report of all classes, trainers, and bookings for a specific day, so that I can have a clear overview of the facility's daily operations.
 
-Current status: **UI-first implementation with hardcoded data** (no business logic/database models wired yet for domain entities).
+## Requirements
 
-## Tech Stack
+* This program requires python3.+ (and pip) installed, a guide on how to install python on various platforms can be found [here](https://docs.djangoproject.com/en/6.0/topics/install/#installing-official-release)
 
-- Python 3
-- Django 5
-- SQLite (default Django database, currently only Django built-in tables migrated)
-- Django Template Language (MVT)
-- Custom CSS
+## Installation and Set-up
 
-## Project Structure
+Here is a run through of how to set up the application:
+* **Step 1** : Clone this repository using **`https://github.com/thekibiru03/gym-fitness-center.git`**
+* **Step 2** : Go to the project root directory and install the virtualenv library using pip an afterwards create a virtual environment. Run the following commands respectively:
+    * **`python -m venv .venv`**
+    * **`source .venv/Scripts/activate`**
+        * Note that you can exit the virtual environment by running the command **`deactivate`**
+* **Step 3** : Download the all dependencies in the requirements.txt using **`pip freeze > requirements.txt`**
+* **Step 4** : Create a database in pgAdmin using the name defined in your `.env` file under `POSTGRES_DB`
+        * Follow `.env.example` to create your own `.env` file and fill in your database credentials
+* **Step 5** : Initialize your postgres database and create the necessary tables: 
+    **`python manage.py migrate`**
+        * Note that you run makemigrations i.e **`python manage.py makemigrations`** when:
+            * You create a new model in your models.py
+            * You modify an existing model (add/remove a field, change a field type, etc.)
+* **Step 6** : Run the Application: **`python manage.py runserver`**
 
-- `gym_system/` - Django project config (`settings.py`, main `urls.py`)
-- `member_access/` - member registration, check-in, renewal pages
-- `class_ops/` - class creation, trainer management/assignment, enrollment, schedule report pages
-- `facility_admin/` - equipment condition page
-- `financial_tracking/` - app scaffolded for future payment domain logic
-- `templates/` - shared and page templates
-- `static/css/styles.css` - custom styling
+## Technologies Used
+* Python 3.14.2
+* HTML  
+* CSS
+* Django-6.0.3
+* Postgresql
 
-## Implemented Pages
-
-All pages below are implemented as templates and routes with static/hardcoded UI data:
-
-1. Register New Member
-2. Member Check-In
-3. Process Membership Renewal
-4. Create a Fitness Class
-5. Manage Trainers
-6. Assign Trainer to Class
-7. Enroll Member into Class
-8. Update Equipment Condition
-9. Daily Schedule Report
-
-## Routes
-
-- `/` - Register Member
-- `/check-in/` - Member Check-In
-- `/membership-renewal/` - Membership Renewal
-- `/classes/create/` - Create Class
-- `/classes/trainers/` - Manage Trainers
-- `/classes/assign-trainer/` - Assign Trainer
-- `/classes/enroll/` - Enroll Member
-- `/facility/equipment/` - Update Equipment
-- `/classes/daily-schedule/` - Daily Schedule Report
-
-## Wireframes
-
-### Register Member
-![Register Member](docs/wireframes/01-register-member.png)
-
-### Member Check-In
-![Member Check-In](docs/wireframes/02-member-checkin.png)
-
-### Membership Renewal
-![Membership Renewal](docs/wireframes/03-membership-renewal.png)
-
-### Create Class
-![Create Class](docs/wireframes/04-create-class.png)
-
-### Assign Trainer
-![Assign Trainer](docs/wireframes/05-assign-trainer.png)
-
-### Enroll Member
-![Enroll Member](docs/wireframes/06-enroll-member.png)
-
-### Update Equipment
-![Update Equipment](docs/wireframes/07-update-equipment.png)
-
-### Daily Schedule
-![Daily Schedule](docs/wireframes/08-daily-schedule.png)
-
-### Manage Trainers
-![Manage Trainers](docs/wireframes/09-manage-trainers.png)
-
-## Setup and Run
-
-From the project root:
-
-```bash
-python3 -m pip install django
-python3 manage.py migrate
-python3 manage.py runserver
-```
-
-Open:
-
-- [http://127.0.0.1:8000](http://127.0.0.1:8000)
-
-## Current Scope (Important)
-
-- Sidebar navigation is static.
-- Forms are UI-only and do not save domain data yet.
-- Member/class/trainer/equipment/report data shown in pages is hardcoded in views.
-- Authentication/login is intentionally deferred to a later phase.
-
-## Next Phase Suggestions
-
-- Add domain models and migrations for:
-  - members, memberships, check-ins
-  - classes, schedules, instructors, instructor shifts, enrollments
-  - rooms, equipment
-  - payments
-- Replace hardcoded view data with database queries.
-- Add form handling with validation and success/error messages.
-- Add login/auth and role-based access for admin users.
-- Add CSV export backend for the daily schedule report.
