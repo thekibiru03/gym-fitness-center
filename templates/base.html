@@ -1,0 +1,36 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ page_title }} | Gym Admin</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <div class="layout">
+        <aside class="sidebar">
+            <div class="brand">Gym Admin</div>
+            <p class="sidebar-heading">Management</p>
+            <nav class="nav-links">
+                <a href="{% url 'member_access:register_member' %}" class="{% block nav_register %}{% endblock %}">Register Member</a>
+                <a href="{% url 'member_access:member_checkin' %}" class="{% block nav_checkin %}{% endblock %}">Member Check-In</a>
+                <a href="{% url 'member_access:membership_renewal' %}" class="{% block nav_renewal %}{% endblock %}">Membership Renewal</a>
+                <a href="{% url 'class_ops:create_class' %}" class="{% block nav_create_class %}{% endblock %}">Create Class</a>
+                <a href="{% url 'class_ops:manage_trainers' %}" class="{% block nav_trainers %}{% endblock %}">Manage Trainers</a>
+                <a href="{% url 'class_ops:assign_trainer' %}" class="{% block nav_assign_trainer %}{% endblock %}">Assign Trainer</a>
+                <a href="{% url 'class_ops:enroll_member' %}" class="{% block nav_enroll %}{% endblock %}">Enroll Member</a>
+                <a href="{% url 'facility_admin:update_equipment' %}" class="{% block nav_equipment %}{% endblock %}">Update Equipment</a>
+                <a href="{% url 'class_ops:daily_schedule' %}" class="{% block nav_schedule %}{% endblock %}">Daily Schedule</a>
+            </nav>
+        </aside>
+
+        <main class="content">
+            <header class="page-header">
+                <h1>{{ page_title }}</h1>
+            </header>
+            {% block content %}{% endblock %}
+        </main>
+    </div>
+</body>
+</html>

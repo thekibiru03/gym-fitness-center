@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% block nav_renewal %}active{% endblock %}
+
+{% block content %}
+<section class="card">
+    <form class="inline-form">
+        <div class="grow">
+            <label>Member ID</label>
+            <input type="text" placeholder="Enter Member ID...">
+        </div>
+        <button type="button" class="btn primary">Lookup</button>
+    </form>
+</section>
+
+<section class="card">
+    <h2>Current Membership</h2>
+    <div class="details-grid">
+        <p><strong>Tier:</strong> <span class="pill active">{{ membership.tier }}</span></p>
+        <p><strong>Status:</strong> <span class="status-bad">{{ membership.status }}</span></p>
+        <p><strong>Expired:</strong> {{ membership.expired_on }}</p>
+    </div>
+</section>
+
+<section class="card">
+    <h2>Payment Details</h2>
+    <form class="form-grid">
+        <div>
+            <label>Renewal Period</label>
+            <select>
+                <option>Select period</option>
+                <option>1 Month</option>
+                <option>3 Months</option>
+                <option>6 Months</option>
+                <option>12 Months</option>
+            </select>
+        </div>
+        <div>
+            <label>Amount ($)</label>
+            <input type="text" value="49.99">
+        </div>
+        <div>
+            <label>Payment Method</label>
+            <select>
+                <option>Select method</option>
+                <option>Cash</option>
+                <option>Card</option>
+                <option>Bank Transfer</option>
+            </select>
+        </div>
+        <div>
+            <label>Transaction Ref</label>
+            <input type="text" value="TXN-00123">
+        </div>
+        <div class="full-width">
+            <button type="button" class="btn primary">Process Renewal</button>
+        </div>
+    </form>
+</section>
+{% endblock %}

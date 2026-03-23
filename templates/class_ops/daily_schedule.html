@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block nav_schedule %}active{% endblock %}
+
+{% block content %}
+<section class="card">
+    <form class="inline-form align-start">
+        <div>
+            <label>Date</label>
+            <input type="text" value="23/03/2025">
+        </div>
+        <button type="button" class="btn primary">Generate Report</button>
+        <button type="button" class="btn">Export CSV</button>
+    </form>
+</section>
+
+<section class="card">
+    <h2>Schedule - March 23, 2025</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Time</th>
+                <th>Class</th>
+                <th>Type</th>
+                <th>Instructor</th>
+                <th>Room</th>
+                <th>Enrolled / Capacity</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in rows %}
+                <tr>
+                    <td><strong>{{ row.time }}</strong></td>
+                    <td>{{ row.class }}</td>
+                    <td><span class="table-badge">{{ row.type }}</span></td>
+                    <td>{{ row.instructor }}</td>
+                    <td>{{ row.room }}</td>
+                    <td class="{% if row.count == '25/25' or row.count == '20/20' %}danger-text{% endif %}">{{ row.count }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</section>
+
+<section class="stats-grid">
+    <article class="stat-card">
+        <h3>{{ totals.classes }}</h3>
+        <p>Total Classes</p>
+    </article>
+    <article class="stat-card">
+        <h3>{{ totals.enrolled }}</h3>
+        <p>Total Enrolled</p>
+    </article>
+    <article class="stat-card">
+        <h3>{{ totals.avg_capacity }}</h3>
+        <p>Avg Capacity</p>
+    </article>
+    <article class="stat-card">
+        <h3>{{ totals.rooms_used }}</h3>
+        <p>Rooms Used</p>
+    </article>
+</section>
+{% endblock %}
