@@ -24,7 +24,7 @@ Here is a run through of how to set up the application:
     * **`source .venv/Scripts/activate`**
         * Note that you can exit the virtual environment by running the command **`deactivate`**
 * **Step 3** : Download the all dependencies in the requirements.txt using **`pip freeze > requirements.txt`**
-* **Step 4** : Create a database in pgAdmin using the name defined in your `.env` file under `DB_NAME`
+* **Step 4** : Create a database in pgAdmin using the name defined in your `.env` file under `POSTGRES_DB`
         * Follow `.env.example` to create your own `.env` file and fill in your database credentials
 * **Step 5** : Initialize your postgres database and create the necessary tables: 
     **`python manage.py migrate`**
