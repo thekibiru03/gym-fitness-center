@@ -23,11 +23,15 @@ Here is a run through of how to set up the application:
     * **`python -m venv .venv`**
     * **`source .venv/Scripts/activate`**
         * Note that you can exit the virtual environment by running the command **`deactivate`**
-    * **Step 3** : Download the all dependencies in the requirements.txt using **`pip freeze > requirements.txt`**
-    * **Step 4** : Initialize your SQLite database and create the necessary tables: 
-    **`python manage.py makemigrations`**
+* **Step 3** : Download the all dependencies in the requirements.txt using **`pip freeze > requirements.txt`**
+* **Step 4** : Create a database in pgAdmin using the name defined in your `.env` file under `DB_NAME`
+        * Follow `.env.example` to create your own `.env` file and fill in your database credentials
+* **Step 5** : Initialize your postgres database and create the necessary tables: 
     **`python manage.py migrate`**
-    * **Step 5** : Run the Application: **`python manage.py runserver`**
+        * Note that you run makemigrations i.e **`python manage.py makemigrations`** when:
+            * You create a new model in your models.py
+            * You modify an existing model (add/remove a field, change a field type, etc.)
+* **Step 6** : Run the Application: **`python manage.py runserver`**
 
 ## Technologies Used
 * Python 3.14.2
