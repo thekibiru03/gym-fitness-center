@@ -2,13 +2,14 @@
 
 This project is a Django-based admin tool for managing day-to-day gym operations.
 
-Current status: **UI-first implementation with hardcoded data** (no business logic/database models wired yet for domain entities).
+Current status: **Phase III Database Implementation**. The project now utilizes full Django ORM models mapping to a PostgreSQL database, environment configuration via python-decouple, and structured testing.
 
 ## Tech Stack
 
 - Python 3
 - Django 5
-- SQLite (default Django database, currently only Django built-in tables migrated)
+- PostgreSQL (via psycopg2-binary)
+- Python Decouple (Environment management)
 - Django Template Language (MVT)
 - Custom CSS
 
@@ -82,7 +83,9 @@ All pages below are implemented as templates and routes with static/hardcoded UI
 From the project root:
 
 ```bash
-python3 -m pip install django
+python3 -m pip install django psycopg2-binary python-decouple
+# Make sure your .env file is set up from .env.example before running migrations!
+python3 manage.py makemigrations
 python3 manage.py migrate
 python3 manage.py runserver
 ```
@@ -91,21 +94,16 @@ Open:
 
 - [http://127.0.0.1:8000](http://127.0.0.1:8000)
 
-## Current Scope (Important)
+## Current Scope (Phase III)
 
-- Sidebar navigation is static.
-- Forms are UI-only and do not save domain data yet.
-- Member/class/trainer/equipment/report data shown in pages is hardcoded in views.
-- Authentication/login is intentionally deferred to a later phase.
+- All 10 required domain models have been built representing member, classes, schedule, facility, and finance tracking.
+- Test scenarios available via `test_scenarios.py` utilizing the Django ORM to populate the database and demonstrate use cases.
+- Environment variables securely handle database credentials using `.env`.
+- Authentication/login and wiring HTML forms to the database are deferred to a later phase.
 
 ## Next Phase Suggestions
 
-- Add domain models and migrations for:
-  - members, memberships, check-ins
-  - classes, schedules, instructors, instructor shifts, enrollments
-  - rooms, equipment
-  - payments
-- Replace hardcoded view data with database queries.
-- Add form handling with validation and success/error messages.
+- Replace hardcoded view data in the templates with actual database queries.
+- Add form handling in Django views with validation and success/error messages.
 - Add login/auth and role-based access for admin users.
 - Add CSV export backend for the daily schedule report.
