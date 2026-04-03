@@ -11,7 +11,7 @@ class Instructor(models.Model):
     HireDate = models.DateField()
     Phone = models.CharField(max_length=20)
     Status = models.CharField(max_length=20, default='Active')
-    AvailabilityNote = models.TextField(null=True, blank=True)
+    AvailabilityNote = models.TextField(default="", blank=True)
 
     def __str__(self):
         return f"{self.FirstName} {self.LastName} - {self.Specialization}"
