@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block nav_enroll %}active{% endblock %}
+
+{% block content %}
+<section class="card">
+    <h2>Enrollment</h2>
+    <form class="form-grid">
+        <div>
+            <label>Member</label>
+            <select><option>Select member</option></select>
+        </div>
+        <div>
+            <label>Class</label>
+            <select><option>Select class</option></select>
+        </div>
+        <div class="full-width">
+            <div class="capacity-row">
+                <span>Capacity</span>
+                <strong>{{ enrolled }} / {{ capacity }} enrolled</strong>
+            </div>
+            <div class="progress">
+                <div class="progress-value" style="width: 72%;"></div>
+            </div>
+        </div>
+        <div class="full-width">
+            <div class="warning">
+                Enrollment will be blocked if the class reaches maximum capacity. The system checks available spots before saving.
+            </div>
+        </div>
+        <div class="full-width">
+            <button type="button" class="btn primary">Enroll Member</button>
+        </div>
+    </form>
+</section>
+{% endblock %}
